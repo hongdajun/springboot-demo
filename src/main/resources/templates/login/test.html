@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>spring boot 登录系统</title>
+</head>
+<body>
+<h3 th:text="'欢迎您：'+${session.tname}"></h3>
+<p>
+    你好！需要执行什么操作
+</p>
+<a th:href="@{/selectPage}">查询</a></br>
+<a th:href="@{/addPage}">添加</a></br>
+<a th:href="@{/updatePage}">修改</a></br>
+<a th:href="@{/deletePage}">删除</a></br>
+
+</body>
+</html>

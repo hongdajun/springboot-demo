@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SelectPage</title>
+    <script src="../static/jquery.js"></script>
+    <script>
+        $(function(){
+            $.ajax({
+                url:"/demo/user/list",//请求地址
+                dataType:"json",//返回值格式
+                success:function(data){
+                    if(data!=''){
+                        var tempTrs="";
+                        for (var i = 0; i < data.length; i++) {
+                            var obj = data[i];
+                            tempTrs+="<tr><td>"+obj.UUID+"<td></td><td>"+obj.USER_PASS+"</td><td>"+obj.REALNAME+"</td>" +
+                                "<td><a href='update.html?uuid="+obj.UUID+"'><input value='更新' type='button'></a>&nbsp; " +
+                                "<input value='删除' type='button' οnclick='deleteOne("+obj.UUID+")'> </td></tr>";
+                        }
+                        $("#tbodyA").append(tempTrs);
+                    }
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+<h3 style="text-align: center">这是一个查询页面</h3>
+<hr style="height:0.5px;border:none;border-top:0.5px dashed #0066CC;" />
+<center>
+    <h3>用户列表</h3>
+    <input type="button" value="添加" onclick="insert()">
+    <table border="1" width="600px;">
+        <thead><td>名称</td><td>位置</td><td>操作</td></thead>
+        <tbody id="tbodyA"></tbody>
+    </table>
+</center>
+<script>
+    //添加按钮
+    function insert() {
+        location.href="/demo/main/addIndex.html";
+    }
+    function deleteOne(deptNo) {
+        if(confirm("确定删除吗？")){
+            $.get(
+                "/demo/dept/deleteOne",
+                {deptNo:deptNo},
+                function(data) {
+                    alert(data.msg);
+                    location.href="/sb/html/list.html";
+                },
+                "json"
+            );
+        }
+    }
+</script>
+<hr style="height:0px;border:none;border-top:1px dashed #0066CC;" />
+<h3 style="text-align: center"><a href="${}/index.html" >返回</a></h3>
+</body>
+</html>
