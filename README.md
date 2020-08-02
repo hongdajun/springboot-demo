@@ -1,7 +1,7 @@
 # springboot-demo
 springboot-demo
 
-# 数据库配置
+#数据库配置
 mysql
 数据库文件：data文件夹
 
